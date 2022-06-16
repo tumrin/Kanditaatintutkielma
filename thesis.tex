@@ -1,0 +1,119 @@
+% Document template suitable for use as a LaTeX master-file for master's
+% thesis in University of Turku Department of Computing.
+
+% HOW TO USE? See https://ttweb.utugit.fi/thesis/doc/overview/
+
+\documentclass[language=finnish,version=final,mainfont=none,sharelatex=false]{utuftthesis}
+\setcounter{secnumdepth}{2}
+\setcounter{tocdepth}{2}
+\usepackage{float}
+\usepackage[caption=false]{subfig}
+\usepackage{relsize}
+\usepackage{xspace}
+\usepackage{listings, listings-rust}
+%\usepackage{color}
+\usepackage{xcolor}
+%\nocite{*}
+\usepackage{setspace}
+
+\definecolor{comment}{HTML}{006600}
+\definecolor{background}{HTML}{FFFFFF}
+\definecolor{string}{HTML}{CC0000}
+\definecolor{keyword}{HTML}{0000FF}
+\definecolor{lines}{HTML}{000000}
+\lstset{ 
+  aboveskip=20pt,
+  belowskip=10pt,
+  columns=fullflexible,
+  backgroundcolor=\color{background}\linespread{0.5},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}; should come as last argument
+  basicstyle=\footnotesize\color{black},        % the size of the fonts that are used for the code
+  breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
+  breaklines=true,                 % sets automatic line breaking
+  captionpos=b,                    % sets the caption-position to bottom
+  commentstyle=\color{comment},    % comment style
+  deletekeywords={...},            % if you want to delete keywords from the given language
+  escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+  extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+  firstnumber=1,                   % start line enumeration with line 1
+  frame=single,	                   % adds a frame around the code
+  keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+  keywordstyle=\color{keyword},       % keyword style
+  language=C,                      % the language of the code
+  morekeywords={*,...},            % if you want to add more keywords to the set
+  numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
+  numbersep=5pt,                   % how far the line-numbers are from the code
+  numberstyle=\tiny\color{lines}, % the style that is used for the line-numbers
+  rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+  showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+  showstringspaces=false,          % underline spaces within strings only
+  showtabs=false,                  % show tabs within strings adding particular underscores
+  stepnumber=1,                    % the step between two line-numbers. If it's 1, each line will be numbered
+  stringstyle=\color{string},     % string literal style
+  tabsize=2,	                   % sets default tabsize to 2 spaces
+ % title=\lstname                   % show the filename of files included with \lstinputlisting; also try caption instead of title
+}
+
+\newcommand{\Rplus}{\protect\hspace{-.1em}\protect\raisebox{.35ex}{\smaller{\smaller\textbf{+}}}}
+\newcommand{\Cpp}{\mbox{C\Rplus\Rplus}\xspace}
+\renewcommand{\lstlistingname}{Ohjelmalistaus}
+
+% Define the algorithm environment
+%\makeatletter
+\providecommand\textquotedblplain{%
+  \bgroup\addfontfeatures{Mapping=}\char34\egroup}
+\providecommand{\tabularnewline}{\\}
+\floatstyle{ruled}
+\newfloat{algorithm}{tbp}{loa}
+\providecommand{\algorithmname}{Algoritmi}
+\floatname{algorithm}{\protect\algorithmname}
+%\makeatother
+
+\addbibresource{Bibliografia.bib}
+
+\begin{document}
+
+\pubyear{2022}
+\pubmonth{4}
+\publab{Tietotekniikka}
+\publaben{Information and Communication Technology}
+\pubtype{tkk}
+\title{Rustin soveltuvuus C ja \Cpp{} -kielien korvaajaksi korkeaa suorituskykyä vaativissa sovelluksissa}
+\author{Tuomas Rinne}
+
+\maketitle
+\input{abstract.tex}
+
+% mandatory
+\tableofcontents
+
+% change the name if the default doesn't sound right
+\renewcommand{\algorithmname}{\listingscaption}
+
+% The thesis starts here.
+
+\begin{comment}
+To better organize things, create a new tex file for each chapter
+and input it below.
+
+Avoid using the å, ä, ö or <space> characters in referred names and
+underscores \_ in file names (may break hyperref).
+
+Good luck!
+\end{comment}
+
+\input{johdanto.tex}\input{esittely.tex}\input{chaasteet}\input{rustvahvuudet}\input{lopputulos}
+
+%\input{file_name_of_chapter_x}
+%\input{file_name_of_chapter_y}
+
+% The thesis main content ends here.
+
+\printbibliography
+
+\begin{comment}
+Important! Create the appendix chapters with command \textbackslash appchapter\{some
+name\} instead of \textbackslash chapter\{some name\} for the automagic
+page counting to work!
+\end{comment}
+
+\end{document}
